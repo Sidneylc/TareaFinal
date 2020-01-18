@@ -19,7 +19,8 @@ namespace Cibertec.Repositories.Dapper.NorthWind
 
         public Customers GetById(string id)
         {
-            using (var connection = new SqlConnection(_connectionString)) { 
+            using (var connection = new SqlConnection(_connectionString)) 
+            { 
                 return connection.GetAll<Customers>().Where(
                 customer => customer.CustomerID.Equals(id)).First();
             }

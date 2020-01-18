@@ -46,7 +46,7 @@ namespace Cibertec.Mvc.Controllers
         }
 
         //public ActionResult Update(string id)
-        public PartialViewResult Update(string id)
+        public PartialViewResult Update(int id)
         {
             //return View(_unit.Products.GetById(id));
             return PartialView("_Update", _unit.Products.GetById(id));
@@ -66,7 +66,7 @@ namespace Cibertec.Mvc.Controllers
         }
 
         //public ActionResult Delete(String id)
-        public PartialViewResult Delete(String id)
+        public PartialViewResult Delete(int id)
         {
             //return View(_unit.Products.GetById(id));
             return PartialView("_Delete", _unit.Products.GetById(id));
@@ -74,7 +74,7 @@ namespace Cibertec.Mvc.Controllers
 
         [HttpPost]
         [ActionName("Delete")]
-        public ActionResult DeletePost(String id)
+        public ActionResult DeletePost(int id)
         {
             var val = _unit.Products.Delete(id);
 

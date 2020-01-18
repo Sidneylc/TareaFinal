@@ -175,6 +175,8 @@
     <Compile Include="Controllers\OrdersController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\SupplierController.cs" />
+    <Compile Include="ProductHub.cs" />
+    <Compile Include="SupplierHub.cs" />
     <Compile Include="CustomerHub.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -186,6 +188,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_JS\cibertec.js" />
+    <Content Include="App_JS\product.js" />
+    <Content Include="App_JS\supplier.js" />
     <Content Include="App_JS\customer.js" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
@@ -243,8 +247,24 @@
     <Content Include="Views\Customer\_Create.cshtml" />
     <Content Include="Views\Customer\_Update.cshtml" />
     <Content Include="Views\Customer\_Delete.cshtml" />
-    <Content Include="Views\Products\Index.cshtml" />
-    <Content Include="Views\Suppliers\Index.cshtml" />
+    <Content Include="Views\Product\Index_old.cshtml" />
+    <Content Include="Views\Supplier\Index_old.cshtml" />
+    <Content Include="Views\Product\Index.cshtml" />
+    <Content Include="Views\Supplier\Index.cshtml" />
+    <Content Include="Views\Product\Create.cshtml" />
+    <Content Include="Views\Product\Delete.cshtml" />
+    <Content Include="Views\Product\Update.cshtml" />
+    <Content Include="Views\Supplier\Create.cshtml" />
+    <Content Include="Views\Supplier\Delete.cshtml" />
+    <Content Include="Views\Supplier\Update.cshtml" />
+    <Content Include="Views\Product\_List.cshtml" />
+    <Content Include="Views\Supplier\_List.cshtml" />
+    <Content Include="Views\Product\_Create.cshtml" />
+    <Content Include="Views\Product\_Delete.cshtml" />
+    <Content Include="Views\Product\_Update.cshtml" />
+    <Content Include="Views\Supplier\_Create.cshtml" />
+    <Content Include="Views\Supplier\_Delete.cshtml" />
+    <Content Include="Views\Supplier\_Update.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

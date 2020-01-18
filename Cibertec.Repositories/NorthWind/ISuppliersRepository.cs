@@ -5,9 +5,9 @@ namespace Cibertec.Repositories.NorthWind
 {
     public interface ISuppliersRepository : IRepository<Suppliers>
     {
-        Suppliers GetById(string id);
+        new Suppliers GetById(int id);
         new bool Update(Suppliers supplier);
-        bool Delete(string id);
+        bool Delete(int id);
         IEnumerable<Suppliers> PagedList(int startRow, int endRow);
         int Count();
     }

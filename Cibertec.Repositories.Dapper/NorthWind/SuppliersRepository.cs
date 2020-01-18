@@ -17,7 +17,7 @@ namespace Cibertec.Repositories.Dapper.NorthWind
 
         }
 
-        public Suppliers GetById(string id)
+        public new Suppliers GetById(int id)
         {
             using (var connection = new SqlConnection(_connectionString))
             {
@@ -54,7 +54,7 @@ namespace Cibertec.Repositories.Dapper.NorthWind
 
         }
 
-        public bool Delete(string id)
+        public bool Delete(int id)
         {
             using (var connection = new SqlConnection(_connectionString))
             {

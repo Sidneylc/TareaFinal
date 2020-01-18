@@ -13,6 +13,6 @@ namespace Cibertec.Models
         public string ProductName { get; set; }
         public decimal UnitPrice { get; set; }
         public decimal UnitsInStock { get; set; }
-        public bool IsDiscontinued { get; set; }
+        public bool Discontinued { get; set; }
     }
 }

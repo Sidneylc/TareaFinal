@@ -17,7 +17,7 @@ namespace Cibertec.Repositories.Dapper.NorthWind
 
         }
 
-        public Products GetById(string id)
+        public new Products GetById(int id)
         {
             using (var connection = new SqlConnection(_connectionString))
             {
@@ -35,14 +35,14 @@ namespace Cibertec.Repositories.Dapper.NorthWind
                                             "set ProductName = @name, " +
                                             "UnitPrice = @price, " +
                                             "UnitsInStock = @units, " +
-                                            "IsDiscontinued = @disc " +
+                                            "Discontinued = @disc " +
                                             "where ProductID = @id",
                                             new
                                             {
                                                 name = product.ProductName,
                                                 price = product.UnitPrice,
                                                 units = product.UnitsInStock,
-                                                disc = product.IsDiscontinued,
+                                                disc = product.Discontinued,
                                                 id = product.ProductID
                                             });
                 return Convert.ToBoolean(result);
@@ -50,7 +50,7 @@ namespace Cibertec.Repositories.Dapper.NorthWind
 
         }
 
-        public bool Delete(string id)
+        public bool Delete(int id)
         {
             using (var connection = new SqlConnection(_connectionString))
             {
