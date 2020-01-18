@@ -1,14 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
-using Cibertec.Repositories.Dapper.NorthWind;
 using Cibertec.UnitOfWork;
-using System.Configuration;
 using Cibertec.Models;
 using log4net;
-using Cibertec.Mvc.ActionFilters;
 
 namespace Cibertec.Mvc.Controllers
 {
