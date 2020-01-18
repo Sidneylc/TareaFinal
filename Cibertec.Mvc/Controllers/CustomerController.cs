@@ -4,6 +4,10 @@ using System.Web.Mvc;
 using Cibertec.UnitOfWork;
 using Cibertec.Models;
 using log4net;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Net.Http.Formatting;
+using Newtonsoft.Json;
 
 namespace Cibertec.Mvc.Controllers
 {
@@ -105,17 +109,44 @@ namespace Cibertec.Mvc.Controllers
             if (page <= 0 || rows <= 0) return PartialView(new List<Customers>());
             var startRecord = ((page - 1) * rows) + 1;
             var endRecord = page * rows;
-
-            /*
-             * Llamando a un WEB API
-             solicitar token:
-             var token = llamada al servicio(userName,password,grant_type);
-             consultar servicio:
-             List<Customers> lstCustomers = llamada al servicio(page,rows,token);
-              return PartialView("_List", lstCustomers)
-             */
+            
             return PartialView("_List", _unit.Customers.PagedList(startRecord, endRecord));
         }
+
+        [Route("List")]
+        public PartialViewResult List()
+        {
+            /* Metodo que consume de la Web api */
+
+            /* Solicitar Token */
+            var cliente = new HttpClient();           
+            string api = "http://localhost:55724";
+
+            string header = "username=sidmneylc28@gmail.com" + "&" +
+                            "password=123456" + "&" +
+                            "grant_type=password";
+            StringContent payload = new StringContent(header);
+            var tokenResponse = cliente.PostAsync(api + "/token", payload).Result;
+            var token = tokenResponse.Content.ReadAsAsync<Token>(
+                new[] { new JsonMediaTypeFormatter() }).Result;
+            // el token esta en token.AccessToken
+
+
+            /* Consumir el servicio con el token */
+            var cliente1 = new HttpClient();
+            cliente1.BaseAddress = new Uri(api);
+            cliente1.DefaultRequestHeaders.Authorization = 
+                new AuthenticationHeaderValue("bearer", token.AccessToken);
+            HttpResponseMessage response = cliente1.GetAsync("Customer/List").Result;
+            var customer = response.Content.ReadAsStringAsync().Result;
+
+            if (response.IsSuccessStatusCode)
+            {
+                return PartialView("_List", customer);
+            }
+            
+        }
+
         [Route("Count/{rows:int}")]
         public int Count(int rows)
         {
