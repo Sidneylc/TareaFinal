@@ -100,8 +100,8 @@ namespace Cibertec.Mvc.Controllers
                 tokenDictionary["access_token"]);
             var json = await httpClient.GetStringAsync("http://localhost:55724/Servicio/list/" + page + "/" + rows);
 
-            List<Customers> lstCustomers = JsonConvert.DeserializeObject<List<Customers>>(json);
-            return PartialView("_List", lstCustomers);
+            List<Servicio> lstServicios = JsonConvert.DeserializeObject<List<Servicio>>(json);
+            return PartialView("_List", lstServicios);
         }
 
         [Route("Count/{rows:int}")]
