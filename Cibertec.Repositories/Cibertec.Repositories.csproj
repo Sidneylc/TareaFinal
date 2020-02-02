@@ -42,10 +42,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IRepository.cs" />
+    <Compile Include="NorthWind\IClientesRepository.cs" />
+    <Compile Include="NorthWind\IContratistasRepository.cs" />
+    <Compile Include="NorthWind\IContratosRepository.cs" />
     <Compile Include="NorthWind\ICustomersRepository.cs" />
+    <Compile Include="NorthWind\ILugaresRepository.cs" />
     <Compile Include="NorthWind\IOrdersRepository.cs" />
     <Compile Include="NorthWind\IOrderDetailsRepository.cs" />
     <Compile Include="NorthWind\IProductsRepository.cs" />
+    <Compile Include="NorthWind\IServiciosRepository.cs" />
     <Compile Include="NorthWind\ISuppliersRepository.cs" />
     <Compile Include="NorthWind\IUserRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

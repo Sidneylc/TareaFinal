@@ -186,12 +186,18 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\ClienteController.cs" />
+    <Compile Include="Controllers\ContratoController.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LugarController.cs" />
     <Compile Include="Controllers\OrdersController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
+    <Compile Include="Controllers\ServicioController.cs" />
     <Compile Include="Controllers\SupplierController.cs" />
-    <Compile Include="Controllers\Token.cs" />
+    <Compile Include="ClienteHub.cs" />
+    <Compile Include="ContratoHub.cs" />
+    <Compile Include="ServicioHub.cs" />
     <Compile Include="ProductHub.cs" />
     <Compile Include="SupplierHub.cs" />
     <Compile Include="CustomerHub.cs" />
@@ -205,6 +211,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_JS\cibertec.js" />
+    <Content Include="App_JS\cliente.js" />
+    <Content Include="App_JS\contrato.js" />
+    <Content Include="App_JS\servicio.js" />
+    <Content Include="App_JS\lugar.js" />
     <Content Include="App_JS\product.js" />
     <Content Include="App_JS\supplier.js" />
     <Content Include="App_JS\customer.js" />
@@ -282,10 +292,28 @@
     <Content Include="Views\Supplier\_Create.cshtml" />
     <Content Include="Views\Supplier\_Delete.cshtml" />
     <Content Include="Views\Supplier\_Update.cshtml" />
+    <Content Include="Views\Servicio\_Create.cshtml" />
+    <Content Include="Views\Servicio\_Delete.cshtml" />
+    <Content Include="Views\Servicio\_List.cshtml" />
+    <Content Include="Views\Servicio\_Update.cshtml" />
+    <Content Include="Views\Servicio\Create.cshtml" />
+    <Content Include="Views\Servicio\Delete.cshtml" />
+    <Content Include="Views\Servicio\Index.cshtml" />
+    <Content Include="Views\Servicio\Update.cshtml" />
+    <Content Include="Views\Contrato\_Create.cshtml" />
+    <Content Include="Views\Contrato\_Delete.cshtml" />
+    <Content Include="Views\Contrato\_List.cshtml" />
+    <Content Include="Views\Contrato\_Update.cshtml" />
+    <Content Include="Views\Contrato\Create.cshtml" />
+    <Content Include="Views\Contrato\Delete.cshtml" />
+    <Content Include="Views\Contrato\Index.cshtml" />
+    <Content Include="Views\Contrato\Update.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Base\" />
+    <Folder Include="Views\Cliente\" />
+    <Folder Include="Views\Lugar\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

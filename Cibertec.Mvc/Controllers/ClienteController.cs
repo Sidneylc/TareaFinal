@@ -6,11 +6,10 @@ using System.Web.Mvc;
 
 namespace Cibertec.Mvc.Controllers
 {
-    //[ErrorActionFilter]
-    [RoutePrefix("Supplier")]
-    public class SupplierController : BaseController
+    [RoutePrefix("Cliente")]
+    public class ClientController : BaseController
     {
-        public SupplierController(ILog log, IUnitOfWork unit) : base(log, unit)
+        public ClientController(ILog log, IUnitOfWork unit) : base(log, unit)
         {
 
         }
@@ -22,82 +21,76 @@ namespace Cibertec.Mvc.Controllers
 
         public ActionResult Index()
         {
-            _log.Info("Ejecución de Supplier Controller Ok");
-            return View(_unit.Suppliers.GetList());
+            _log.Info("Ejecución de Cliente Controller Ok");
+            return View(_unit.Clientes.GetList());
         }
 
         public PartialViewResult Create()
         {
-            return PartialView("_Create", new Suppliers());
+            return PartialView("_Create", new Cliente());
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Suppliers supplier)
+        public ActionResult Create(Cliente cliente)
         {
             if (ModelState.IsValid)
             {
-                _unit.Suppliers.Insert(supplier);
+                _unit.Clientes.Insert(cliente);
                 return RedirectToAction("Index");
             }
-            //return View(supplier);
-            return PartialView("_Create", supplier);
+            //return View(cliente);
+            return PartialView("_Create", cliente);
         }
 
-        //public ActionResult Update(string id)
         public PartialViewResult Update(int id)
         {
-            //return View(_unit.Suppliers.GetById(id));
-            return PartialView("_Update", _unit.Suppliers.GetById(id));
+            return PartialView("_Update", _unit.Clientes.GetById(id));
         }
 
         [HttpPost]
-        public ActionResult Update(Suppliers supplier)
+        public ActionResult Update(Cliente cliente)
         {
-            var val = _unit.Suppliers.Update(supplier);
+            var val = _unit.Clientes.Update(cliente);
 
             if (val)
             {
                 return RedirectToAction("Index");
             }
-            //return View(supplier);
-            return PartialView("_Update", supplier);
+            return PartialView("_Update", cliente);
         }
 
-        //public ActionResult Delete(String id)
         public PartialViewResult Delete(int id)
         {
-            //return View(_unit.Suppliers.GetById(id));
-            return PartialView("_Delete", _unit.Suppliers.GetById(id));
+            return PartialView("_Delete", _unit.Clientes.GetById(id));
         }
 
         [HttpPost]
         [ActionName("Delete")]
         public ActionResult DeletePost(int id)
         {
-            var val = _unit.Suppliers.Delete(id);
+            var val = _unit.Clientes.Delete(id);
 
             if (val) return RedirectToAction("Index");
-            //return View();
-            return PartialView("_Delete", _unit.Suppliers.GetById(id));
+            return PartialView("_Delete", _unit.Clientes.GetById(id));
         }
 
         [Route("List/{page:int}/{rows:int}")]
         public PartialViewResult List(int page, int rows)
         {
-            if (page <= 0 || rows <= 0) return PartialView(new List<Suppliers>());
+            if (page <= 0 || rows <= 0) return PartialView(new List<Cliente>());
             var startRecord = ((page - 1) * rows) + 1;
             var endRecord = page * rows;
 
             /*
              * Llamando a un WEB API
              */
-            return PartialView("_List", _unit.Suppliers.PagedList(startRecord, endRecord));
+            return PartialView("_List", _unit.Clientes.PagedList(startRecord, endRecord));
         }
         [Route("Count/{rows:int}")]
         public int Count(int rows)
         {
-            var totalRecords = _unit.Suppliers.Count();
+            var totalRecords = _unit.Clientes.Count();
             return totalRecords % rows != 0 ? (totalRecords / rows) + 1 : totalRecords / rows;
         }
     }

@@ -47,11 +47,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="NorthWind\ClientesRepository.cs" />
+    <Compile Include="NorthWind\ContratistasRepository.cs" />
+    <Compile Include="NorthWind\ContratosRepository.cs" />
     <Compile Include="NorthWind\CustomersRepository.cs" />
+    <Compile Include="NorthWind\LugaresRepository.cs" />
     <Compile Include="NorthWind\NorthwindUnitOfWork.cs" />
     <Compile Include="NorthWind\OrderDetailsRepository.cs" />
     <Compile Include="NorthWind\OrdersRepository.cs" />
     <Compile Include="NorthWind\ProductsRepository.cs" />
+    <Compile Include="NorthWind\ServiciosRepository.cs" />
     <Compile Include="NorthWind\SuppliersRepository.cs" />
     <Compile Include="NorthWind\UserRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

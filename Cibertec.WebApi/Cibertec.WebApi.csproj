@@ -155,6 +155,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\CibertecController.cs" />
+    <Compile Include="Controllers\ServicioController.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Handlers\GlobalExceptionHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

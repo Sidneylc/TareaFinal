@@ -1,13 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Web.Mvc;
+﻿using Cibertec.Models;
 using Cibertec.UnitOfWork;
-using Cibertec.Models;
 using log4net;
+using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Headers;
-using System.Net.Http.Formatting;
-using Newtonsoft.Json;
+using System.Threading.Tasks;
+using System.Web.Mvc;
 
 namespace Cibertec.Mvc.Controllers
 {
@@ -103,48 +103,39 @@ namespace Cibertec.Mvc.Controllers
             return PartialView("_Delete", _unit.Customers.GetById(id));
         }
 
+        //[Route("List/{page:int}/{rows:int}")]
+        //public PartialViewResult List(int page, int rows)
+        //{
+        //    if (page <= 0 || rows <= 0) return PartialView(new List<Customers>());
+        //    var startRecord = ((page - 1) * rows) + 1;
+        //    var endRecord = page * rows;
+
+        //    return PartialView("_List", _unit.Customers.PagedList(startRecord, endRecord));
+        //}
+
         [Route("List/{page:int}/{rows:int}")]
-        public PartialViewResult List(int page, int rows)
+        public async Task<PartialViewResult> List(int page, int rows)
         {
-            if (page <= 0 || rows <= 0) return PartialView(new List<Customers>());
-            var startRecord = ((page - 1) * rows) + 1;
-            var endRecord = page * rows;
-            
-            return PartialView("_List", _unit.Customers.PagedList(startRecord, endRecord));
-        }
-
-        [Route("List")]
-        public PartialViewResult List()
-        {
-            /* Metodo que consume de la Web api */
-
-            /* Solicitar Token */
-            var cliente = new HttpClient();           
-            string api = "http://localhost:55724";
-
-            string header = "username=sidmneylc28@gmail.com" + "&" +
-                            "password=123456" + "&" +
-                            "grant_type=password";
-            StringContent payload = new StringContent(header);
-            var tokenResponse = cliente.PostAsync(api + "/token", payload).Result;
-            var token = tokenResponse.Content.ReadAsAsync<Token>(
-                new[] { new JsonMediaTypeFormatter() }).Result;
-            // el token esta en token.AccessToken
-
-
-            /* Consumir el servicio con el token */
-            var cliente1 = new HttpClient();
-            cliente1.BaseAddress = new Uri(api);
-            cliente1.DefaultRequestHeaders.Authorization = 
-                new AuthenticationHeaderValue("bearer", token.AccessToken);
-            HttpResponseMessage response = cliente1.GetAsync("Customer/List").Result;
-            var customer = response.Content.ReadAsStringAsync().Result;
-
-            if (response.IsSuccessStatusCode)
+            var httpClient = new HttpClient();
+            var credential = new Dictionary<string, string>
             {
-                return PartialView("_List", customer);
-            }
-            
+                { "grant_type", "password" },
+                { "username", "sidneylc28@gmail.com" },
+                { "password", "123456" }
+            };
+
+            var token = await httpClient.PostAsync("http://localhost:55724/token",
+                new FormUrlEncodedContent(credential));
+            var tokenContent = token.Content.ReadAsStringAsync().Result;
+            var tokenDictionary = JsonConvert.DeserializeObject<Dictionary<string, string>>(tokenContent);
+
+            //Paso 2: Consumir Servicio
+            httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer",
+                tokenDictionary["access_token"]);
+            var json = await httpClient.GetStringAsync("http://localhost:55724/customer/list/" + page + "/" + rows);
+
+            List<Customers> lstCustomers = JsonConvert.DeserializeObject<List<Customers>>(json);
+            return PartialView("_List", lstCustomers);
         }
 
         [Route("Count/{rows:int}")]

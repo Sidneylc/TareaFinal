@@ -15,5 +15,11 @@ namespace Cibertec.UnitOfWork
         IUserRepository Users { get; }
         IProductsRepository Products { get; }
         ISuppliersRepository Suppliers { get; }
+
+        IClientesRepository Clientes { get; }
+        IContratistasRepository Contratistas { get; }
+        IContratosRepository Contratos { get; }
+        ILugaresRepository Lugares { get; }
+        IServiciosRepository Servicios { get; }
     }
 }

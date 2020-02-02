@@ -45,11 +45,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Cliente.cs" />
+    <Compile Include="Contratista.cs" />
+    <Compile Include="Contrato.cs" />
     <Compile Include="Customers.cs" />
+    <Compile Include="Lugar.cs" />
     <Compile Include="oRDERS.cs" />
     <Compile Include="OrderDetails.cs" />
     <Compile Include="Products.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Servicio.cs" />
     <Compile Include="Suppliers.cs" />
     <Compile Include="User.cs" />
   </ItemGroup>
